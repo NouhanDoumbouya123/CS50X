@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-start">Name</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Buy/Sell</th>
+                <th class="text-end">Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in database %}
+            <tr>
+                <td class="text-start">{{ row["symbol"] }}</td>
+                <td class="text-start">{{ row["name"] }}</td>
+                <td class="text-end">{{ row["shares"] }}</td>
+                <td class="text-end">{{ row["price"] }}</td>
+                <td class="text-end {% if row['buy_sell'] == 'SELL' %}text-danger{% else %}text-primary{% endif %}">{{ row["buy_sell"] }}</td>
+                <td class="text-end">{{ row["timestamp"] }}</td>
+                <td class="text-end">28.00</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
